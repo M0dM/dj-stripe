@@ -837,7 +837,8 @@ class Customer(StripeObject):
     # dj-stripe fields
     subscriber = ForeignKey(
         djstripe_settings.get_subscriber_model_string(), null=True,
-        on_delete=SET_NULL, related_name="djstripe_customers"
+        on_delete=SET_NULL, related_name="djstripe_customers",
+        db_constraint=False
     )
     date_purged = DateTimeField(null=True, editable=False)
 
