@@ -84,9 +84,16 @@ class StripeModel(models.Model):
         """
         api_key = api_key or self.default_api_key
 
-        return self.stripe_class.retrieve(
-            id=self.id, api_key=api_key, expand=self.expand_fields
-        )
+        instance = None
+        try:
+            instance = self.stripe_class.retrieve(
+                id=self.id, api_key=api_key, expand=self.expand_fields
+            )
+        except Exception:  # NOQA
+            instance = self.stripe_class.retrieve(
+                id=self.id, api_key=api_key
+            )
+        return instance
 
     @classmethod
     def api_list(cls, api_key=djstripe_settings.STRIPE_SECRET_KEY, **kwargs):
