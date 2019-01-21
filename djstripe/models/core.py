@@ -999,7 +999,7 @@ class Customer(StripeModel):
                 # blindly as the object may have been deleted or not exist.
                 # Attempting to save that would cause an IntegrityError.
                 self.subscriber = cls.objects.get(pk=subscriber_id)
-            except (cls.DoesNotExist, ValueError):
+            except:  # NOQA
                 logger.warning(
                     "Could not find subscriber %r matching customer %r",
                     subscriber_id,
