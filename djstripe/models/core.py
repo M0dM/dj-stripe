@@ -418,12 +418,7 @@ class Customer(StripeModel):
         unique_together = ("subscriber", "livemode")
 
     def __str__(self):
-        if self.subscriber_id is None:
-            return "{id} (deleted)".format(id=self.id)
-        elif self.subscriber.email:
-            return self.subscriber.email
-        else:
-            return self.id
+        return self.id
 
     @classmethod
     def _manipulate_stripe_object_hook(cls, data):
