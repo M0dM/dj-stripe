@@ -418,7 +418,7 @@ class Customer(StripeModel):
         unique_together = ("subscriber", "livemode")
 
     def __str__(self):
-        if not self.subscriber:
+        if self.subscriber_id is None:
             return "{id} (deleted)".format(id=self.id)
         elif self.subscriber.email:
             return self.subscriber.email
