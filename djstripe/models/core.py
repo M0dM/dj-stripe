@@ -409,8 +409,8 @@ class Customer(StripeModel):
         djstripe_settings.get_subscriber_model_string(),
         null=True,
         on_delete=models.SET_NULL,
-        related_name="djstripe_customers",
-        db_constraint=djstripe_settings.SUBSCRIBER_MODEL_DB_CONSTRAINT
+        related_name="djstripe_customers"
+#        db_constraint=djstripe_settings.SUBSCRIBER_MODEL_DB_CONSTRAINT
     )
     date_purged = models.DateTimeField(null=True, editable=False)
 
